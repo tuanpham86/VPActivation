@@ -53,5 +53,6 @@ describe('VZW Prepaid Activation e2e', function () {
         numberPortPage.clickContinue();
         browser.sleep(3000);
         browser.wait(EC.urlContains('#/plan'), 5000);
+        browser.pause();
     });
 });
