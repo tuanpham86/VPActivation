@@ -1,0 +1,30 @@
+{
+    "name": "protractor-grunt",
+    "version": "1.0.0",
+    "description": "Experimental project to see protract work with grunt",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/tuanpham86/protractor-grunt.git"
+    },
+    "keywords": [
+    "protractor"
+  ],
+    "author": "Tuan Pham",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tuanpham86/protractor-grunt/issues"
+    },
+    "homepage": "https://github.com/tuanpham86/protractor-grunt#readme",
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-jshint": "^1.0.0",
+        "grunt-protractor-runner": "^4.0.0",
+        "grunt-shell-spawn": "^0.3.10",
+        "protractor": "^4.0.0",
+        "protractor-jasmine2-screenshot-reporter": "^0.3.2"
+    }
+}
