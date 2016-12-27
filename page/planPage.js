@@ -10,8 +10,8 @@ var numberPortPage = function () {
 
     //select a Plan (click on plan nth)
     this.clickOnPlan = function(num) {
-        var plan = element.all(by.buttonText('select plan')).then(function(n) {
-            plan[n].click();
+        var plan = element.all(by.buttonText('select plan')).then(function(items) {
+            browser.actions().mouseMove(element.all(by.buttonText('select plan'))[num]).click().perform();
         });
     };
 
