@@ -8,8 +8,6 @@ var numberPortPage = function () {
         return  element.all(by.buttonText('select plan')).count();
     };
 
-
-
     //select a Plan (click on plan nth)
     this.clickOnPlan = function(num) {
         var plan = element.all(by.buttonText('select plan')).then(function(n) {
