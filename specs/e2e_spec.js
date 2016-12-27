@@ -1,3 +1,5 @@
+/// <reference path="../typings/globals/angular-protractor/index.d.ts" />
+
 var homePage = require('../page/homePage.js');
 var identityValidationPage = require('../page/identityValidationPage.js');
 var numberPortPage = require('../page/numberPortPage.js');
@@ -18,7 +20,7 @@ describe('VZW Prepaid Activation e2e', function () {
     it('should navigate to home page', function () {
         browser.get('http://verizonprepaid-qa.khhpq2nhzi.us-east-1.elasticbeanstalk.com/#/scan/003/11/123456298');
         expect(browser.getTitle()).toBe('VZW Prepaid Activation');
-        
+
         // Waits for the URL to contain 'foo'.
         browser.wait(EC.urlContains('#/scan'), 5000);
         //expect(browser.getCurrentUrl()).toContains('#/scan')
@@ -54,13 +56,12 @@ describe('VZW Prepaid Activation e2e', function () {
         numberPortPage.clickContinue();
         browser.sleep(5000);
         browser.wait(EC.urlContains('#/plan'), 50000);
-    });
+       
+        planPage.countOfPlans().then((size) => {
+            expect(size).toBe(5);
+        });
 
-    it('can select a plan', function () {
-        browser.sleep(2000);
+        planPage.clickOnPlan(1);
 
-        plan.clickContinue();
-        browser.sleep(100000);
-        browser.wait(EC.urlContains('#/plan'), 50000);
     });
 });
