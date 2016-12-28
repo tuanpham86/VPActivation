@@ -10,10 +10,9 @@ describe('VZW Prepaid Activation e2e', function () {
     var EC = protractor.ExpectedConditions;
 
     beforeEach(function () {
-        var width = 1280;
-        var height = 800;
+        var width = 1600;
+        var height = 1000;
         browser.driver.manage().window().setSize(width, height);
-        //browser.waitForAngular();
         browser.ignoreSynchronization = true;
     });
 
@@ -23,7 +22,6 @@ describe('VZW Prepaid Activation e2e', function () {
 
         // Waits for the URL to contain 'foo'.
         browser.wait(EC.urlContains('#/scan'), 5000);
-        //expect(browser.getCurrentUrl()).toContains('#/scan')
     });
 
     it('should navigate to identity Validation page', function () {
@@ -47,22 +45,24 @@ describe('VZW Prepaid Activation e2e', function () {
         identityValidationPage.inputHomePhone(7205022105);
         identityValidationPage.inputEmail('test@test.test');
         identityValidationPage.clickContinue();
-        browser.sleep(2000);
-        browser.wait(EC.urlContains('#/number-port'), 5000);
+        browser.sleep(5000);
+        //browser.wait(EC.urlContains('#/number-port'), 5000);     
     });
 
     it('should navigate to plan page', function () {
-        browser.sleep(2000);
-
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 3000));
         numberPortPage.clickContinue();
-        browser.sleep(5000);
-        browser.wait(EC.urlContains('#/plan'), 50000);
-       
-        planPage.countOfPlans().then((size) => {
+        browser.sleep(10000);
+        browser.wait(EC.urlContains('#/plan'), 5000);
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Select Your Plan')), 5000));
+        //check number of available plans         
+        planPage.countOfPlans().then(function(size) {
             expect(size).toBe(5);
         });
 
+        //click select a plan
         planPage.clickOnPlan(1);
-
+        browser.sleep(5000);
+        browser.wait(EC.urlContains('#/order-confirm'), 5000);
     });
 });

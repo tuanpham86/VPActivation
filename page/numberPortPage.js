@@ -3,11 +3,11 @@ var protractor = require('protractor');
 var numberPortPage = function () {
 
     this.clickContinue = function() {
-        element(by.buttonText('Continue')).click();
+        element(by.buttonText('continue')).click();
     };
     
     this.clickCancel = function() {
-        element(by.buttonText('Cancel')).click();
+        element(by.buttonText('cancel')).click();
     };
 };
 

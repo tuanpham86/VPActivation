@@ -2,17 +2,24 @@
 
 var protractor = require('protractor');
 
-var numberPortPage = function () {
+var temp = 5;
+
+var planPage = function () {
     //count of plans
-    this.countOfPlans = function(cb) {
-        return  element.all(by.buttonText('select plan')).count();
+    this.countOfPlans = function() {
+        return element.all(by.buttonText('select plan')).count();
     };
 
     //select a Plan (click on plan nth)
     this.clickOnPlan = function(num) {
-        var plan = element.all(by.buttonText('select plan')).then(function(items) {
-            browser.actions().mouseMove(element.all(by.buttonText('select plan'))[num]).click().perform();
+        var allPlans = element.all(by.buttonText('select plan'));
+        allPlans.count().then(function (count) {
+            var planName = allPlans.get(num);
+            planName.click();
         });
+        // var allPlans = element.all(by.css('.items li')).then(function() {
+        //     allPlans.get(num).click();
+        // });        
     };
 
     this.clickContinue = function() {
@@ -24,4 +31,4 @@ var numberPortPage = function () {
     };
 };
 
-module.exports = new numberPortPage();
+module.exports = new planPage;
