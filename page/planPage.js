@@ -2,8 +2,6 @@
 
 var protractor = require('protractor');
 
-var temp = 5;
-
 var planPage = function () {
     //count of plans
     this.countOfPlans = function() {
@@ -17,17 +15,17 @@ var planPage = function () {
             var planName = allPlans.get(num);
             planName.click();
         });
-        // var allPlans = element.all(by.css('.items li')).then(function() {
+        // var allPlans = element.all(by.css('select plan')).then(function() {
         //     allPlans.get(num).click();
         // });        
     };
 
     this.clickContinue = function() {
-        element(by.buttonText('Continue')).click();
+        element(by.buttonText('continue')).click();
     };
     
     this.clickCancel = function() {
-        element(by.buttonText('Cancel')).click();
+        element(by.buttonText('cancel')).click();
     };
 };
 

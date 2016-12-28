@@ -1,9 +1,12 @@
-/// <reference path="../typings/globals/angular-protractor/index.d.ts" />
+/// <reference path="../typings/globals/protractor/index.d.ts" />
 
 var homePage = require('../page/homePage.js');
 var identityValidationPage = require('../page/identityValidationPage.js');
 var numberPortPage = require('../page/numberPortPage.js');
 var planPage = require('../page/planPage.js');
+var orderReviewPage = require('../page/orderReviewPage.js');
+var mobileScanSheetPage = require('../page/mobileScanSheetPage.js');
+var verificationPage = require('../page/verificationPage.js');
 
 describe('VZW Prepaid Activation e2e', function () {
 
@@ -55,14 +58,32 @@ describe('VZW Prepaid Activation e2e', function () {
         browser.sleep(10000);
         browser.wait(EC.urlContains('#/plan'), 5000);
         browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Select Your Plan')), 5000));
+        
         //check number of available plans         
         planPage.countOfPlans().then(function(size) {
             expect(size).toBe(5);
         });
+    });
 
+    it('can select a plan', function () {
         //click select a plan
         planPage.clickOnPlan(1);
         browser.sleep(5000);
         browser.wait(EC.urlContains('#/order-confirm'), 5000);
     });
+
+    // Order-confirm
+    it('can confirm correct order', function () {
+        orderReviewPage.clickContinue();
+        browser.sleep(5000);
+        browser.wait(EC.urlContains('#/printmss'), 5000);
+    });
+
+    // Print Mobile Scan Sheet
+    it('can select a plan', function () {
+        mobileScanSheetPage.clickContinue();
+        browser.sleep(5000);
+        browser.wait(EC.urlContains('#/verification'), 5000);
+    });
+    
 });
