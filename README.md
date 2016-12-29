@@ -11,7 +11,9 @@ Added html report with protractor-jasmine2-screenshot-reporter.
 
 #### Installation
 `cd VPActivation`
+
 `npm install`
+
 Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
 
 #### To run the test
