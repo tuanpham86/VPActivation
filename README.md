@@ -8,12 +8,12 @@ Added html report with protractor-jasmine2-screenshot-reporter.
 
 
 Prerequisites:
-$ npm install -g protractor
+  $ npm install -g protractor
 
 Installation
-$ npm install
-Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
+  $ npm install
+  Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
 
 To run the test
-$ grunt
+  $ grunt
 
