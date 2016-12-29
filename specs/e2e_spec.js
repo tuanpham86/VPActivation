@@ -49,11 +49,11 @@ describe('VZW Prepaid Activation e2e', function () {
         identityValidationPage.inputEmail('test@test.test');
         identityValidationPage.clickContinue();
         browser.sleep(5000);
-        //browser.wait(EC.urlContains('#/number-port'), 5000);     
+        browser.wait(EC.urlContains('#/number-port'), 3000);     
     });
 
     it('should navigate to plan page', function () {
-        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 3000));
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000));
         numberPortPage.clickContinue();
         browser.sleep(10000);
         browser.wait(EC.urlContains('#/plan'), 5000);
