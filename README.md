@@ -6,14 +6,14 @@ https://github.com/tuanpham86/VPActivation.git
 Added html report with protractor-jasmine2-screenshot-reporter.
 
 
+#### Prerequisites:
+  `npm install -g protractor`
 
-Prerequisites:
-  $ npm install -g protractor
-
-Installation
-  $ npm install
+#### Installation
+  `cd VPActivation`
+  `npm install`
   Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
 
-To run the test
+#### To run the test
   $ grunt
 
