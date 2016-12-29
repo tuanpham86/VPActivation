@@ -7,13 +7,13 @@ Added html report with protractor-jasmine2-screenshot-reporter.
 
 
 #### Prerequisites:
-  `npm install -g protractor`
+`npm install -g protractor`
 
 #### Installation
-  `cd VPActivation`
-  `npm install`
-  Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
+`cd VPActivation`
+`npm install`
+Get ChromeDriver set up: Run `./node_modules/.bin/webdriver-manager update`.
 
 #### To run the test
-  $ grunt
+`grunt`
 
