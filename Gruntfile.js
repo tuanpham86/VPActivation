@@ -40,7 +40,11 @@ module.exports = function (grunt) {
             npm_install: {
                 command: 'npm install'
             }
-        }
+        },
+        eslint: {
+            all: ['page/*.js', '!/nodemodules/**/*/js'],
+            target: ['file.js']
+        }   
 
     });
 
@@ -49,10 +53,14 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
+    grunt.loadNpmTasks('grunt-eslint');
+
     grunt.loadNpmTasks('grunt-shell-spawn');
 
     grunt.registerTask('install', ['shell:npm_install', 'shell:protractor_install']);
 
     grunt.registerTask('default', ['jshint', 'protractor:singlerun']);
+
+    grunt.registerTask('eslint', ['eslint']);
 
 };

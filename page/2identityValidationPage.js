@@ -1,4 +1,4 @@
-var protractor = require('protractor');
+// var protractor = require('protractor');
 
 var identityValidationPage = function () {
     var EC = protractor.ExpectedConditions;
@@ -56,13 +56,13 @@ var identityValidationPage = function () {
 
     //click Continue
     this.clickContinue = function() {
-        browser.wait(EC.elementToBeClickable(this.continueButton, 10000)); // TODO: set a main timeOut time for all pages
+        browser.wait(EC.elementToBeClickable(this.continueButton), 10000, "continue button not found!"); // TODO: set a main timeOut time for all pages
         this.continueButton.click();
     };
 
     //click Cancel
     this.clickCancel = function() {
-        browser.wait(EC.elementToBeClickable(this.cancelButton, 10000));
+        browser.wait(EC.elementToBeClickable(this.cancelButton), 10000, "cancel button not found!");
         this.cancelButton.click();
     };
 

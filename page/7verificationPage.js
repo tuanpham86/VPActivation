@@ -1,6 +1,6 @@
 /// <reference path="../typings/globals/angular-protractor/index.d.ts" />
 
-var protractor = require('protractor');
+// var protractor = require('protractor');
 
 var verificationPage = function () {
     var EC = protractor.ExpectedConditions;
@@ -12,7 +12,7 @@ var verificationPage = function () {
     }
 
     this.clickSubmit = function() {
-        browser.wait(EC.elementToBeClickable(this.submitButton, 10000)); // TODO: set a main timeOut time for all pages
+        browser.wait(EC.elementToBeClickable(this.submitButton), 10000); // TODO: set a main timeOut time for all pages
         this.submitButton.click();
     };
 

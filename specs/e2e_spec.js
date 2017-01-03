@@ -1,20 +1,21 @@
 /// <reference path="../typings/globals/protractor/index.d.ts" />
 
-var homePage = require('../page/homePage.js');
-var identityValidationPage = require('../page/identityValidationPage.js');
-var numberPortPage = require('../page/numberPortPage.js');
-var planPage = require('../page/planPage.js');
-var orderReviewPage = require('../page/orderReviewPage.js');
-var mobileScanSheetPage = require('../page/mobileScanSheetPage.js');
-var verificationPage = require('../page/verificationPage.js');
-var verificationConfirmPage = require('../page/verificationConfirmPage.js');
+var homePage = require('../page/1homePage.js');
+var identityValidationPage = require('../page/2identityValidationPage.js');
+var numberPortPage = require('../page/3numberPortPage.js');
+var planPage = require('../page/4planPage.js');
+var orderReviewPage = require('../page/5orderReviewPage.js');
+var mobileScanSheetPage = require('../page/6mobileScanSheetPage.js');
+var verificationPage = require('../page/7verificationPage.js');
+var verificationConfirmPage = require('../page/8verificationConfirmPage.js');
+var activationCompletePage = require('../page/9activationCompletePage.js');
 //require ('../waitReady.js');
 
 
 describe('VZW Prepaid Activation e2e', function () {
 
     var EC = protractor.ExpectedConditions;
-    var url = 'http://verizonprepaid-qa.khhpq2nhzi.us-east-1.elasticbeanstalk.com/#/scan/003/11/123456298';
+    // var url = 'http://verizonprepaid-qa.khhpq2nhzi.us-east-1.elasticbeanstalk.com/#/scan/003/11/123456298';
     var wTime = 20000; // 10 seconds
 
     beforeEach(function () {
@@ -24,10 +25,10 @@ describe('VZW Prepaid Activation e2e', function () {
         browser.ignoreSynchronization = true;
     });
 
-    afterEach(function() {
-        browser.executeScript('window.sessionStorage.clear();');
-        browser.executeScript('window.localStorage.clear();');
-    });
+    // afterEach(function() {
+    //     browser.executeScript('window.sessionStorage.clear();');
+    //     browser.executeScript('window.localStorage.clear();');
+    // });
 
     it('should navigate to home page', function () {
         browser.get('#/scan/003/11/123456298', 10000);
@@ -64,10 +65,10 @@ describe('VZW Prepaid Activation e2e', function () {
         identityValidationPage.clickContinue();
         browser.sleep(5000);
         // browser.wait(EC.urlContains('#/number-port'), wTime);
-        //browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), wTime));
+        // browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), wTime));
 
         // TODO: Verifiy Name/Address
-
+        // expect(element(by.css('h3 a')).getText()).toContain('abc');
         // TODO: select YES?
         // Input number
         // Account Number
@@ -77,19 +78,25 @@ describe('VZW Prepaid Activation e2e', function () {
     });
 
     it('should navigate to plan page', function () {
-        console.log('date: ' + new Date()); 
-        console.log('e2e: '+ EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000));  
-        
-        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000));
-        numberPortPage.clickContinue();
-        browser.sleep(10000);
-        browser.wait(EC.urlContains('#/plan'), wTime);
-        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Select Your Plan')), wTime));
-        // browser.sleep(10000);
-        // check number of available plans         
-        planPage.countOfPlans().then(function(size) {
-            expect(size).toBe(5);
+        // console.log('date: ' + new Date()); 
+        // console.log('e2e: '+ EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000));  
+        // browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000));
+
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Number Port')), 5000)).then(function(){
+            numberPortPage.clickContinue();
         });
+        // numberPortPage.clickContinue();
+
+        // browser.sleep(10000);
+        browser.wait(EC.urlContains('#/plan'), wTime);
+        
+        // browser.sleep(10000);
+        // check number of available plans
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Select Your Plan')), wTime)).then(function(){
+            planPage.countOfPlans().then(function(size) {
+                expect(size).toBe(5);
+            });
+        });         
     });
 
     it('can select a plan - go to confirm page', function () {
@@ -121,16 +128,33 @@ describe('VZW Prepaid Activation e2e', function () {
         // Portin: only available if select a Port
     });
 
-    it('should goes to verificationConfirm page', function () {
+    it('should goes to verification Confirm page', function () {
         verificationPage.inputReceiptID(9881794110024562);
         verificationPage.clickSubmit();
         // browser.sleep(5000);
-        browser.wait(EC.urlContains('#/verification'), wTime);
+        browser.wait(EC.urlContains('#/verification-confirm'), wTime);
+        //TODO: input receipt ID: 9881794110024562 (calculated?)
+
+        // Portin: only available if select a Port
+    });
+
+    
+    it('should goes to activation Complete page', function () {
+
+        verificationConfirmPage.clickContinue();
+        // browser.sleep(5000);
+        browser.wait(EC.urlContains('#/activation-complete'), wTime);
         //TODO: input receipt ID: 9881794110024562 (calculated?)
 
         // Portin: only available if select a Port
     });
     
-    // next
+    it('should goes to activation Complete page', function () {
+        // browser.sleep(5000);
+        
+        //TODO: input receipt ID: 9881794110024562 (calculated?)
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Order and Activation Complete')), wTime));
+        // Portin: only available if select a Port
+    });
     
 });
