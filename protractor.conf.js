@@ -56,11 +56,12 @@ exports.config = {
     // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
     capabilities: {
         'browserName': 'chrome'
+        //count: 2
     },
 
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
-    baseUrl: 'http://localhost:9999',
+    baseUrl: 'http://verizonprepaid-qa.khhpq2nhzi.us-east-1.elasticbeanstalk.com/',
 
     // Selector for the element housing the angular app - this defaults to
     // body, but is necessary if ng-app is on a descendant of
@@ -77,6 +78,7 @@ exports.config = {
     // Assign the test reporter to each running instance
     onPrepare: function () {
         jasmine.getEnv().addReporter(reporter);
+        //require('./waitReady.js');
     },
 
     // Close the report after all tests finish

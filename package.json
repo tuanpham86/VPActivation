@@ -1,30 +1,35 @@
 {
-    "name": "protractor-grunt",
-    "version": "1.0.0",
-    "description": "Experimental project to see protract work with grunt",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/tuanpham86/VPActivation.git"
-    },
-    "keywords": [
+  "name": "protractor-grunt",
+  "version": "1.0.0",
+  "description": "Experimental project to see protract work with grunt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tuanpham86/VPActivation.git"
+  },
+  "keywords": [
     "protractor"
   ],
-    "author": "Tuan Pham",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/tuanpham86/VPActivation/issues"
-    },
-    "homepage": "https://github.com/tuanpham86/VPActivation#readme",
-    "devDependencies": {
-        "grunt": "^1.0.1",
-        "grunt-contrib-jshint": "^1.0.0",
-        "grunt-protractor-runner": "^4.0.0",
-        "grunt-shell-spawn": "^0.3.10",
-        "protractor": "^4.0.0",
-        "protractor-jasmine2-screenshot-reporter": "^0.3.2"
-    }
+  "author": "Tuan Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuanpham86/VPActivation/issues"
+  },
+  "homepage": "https://github.com/tuanpham86/VPActivation#readme",
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-protractor": "^1.32.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-protractor-runner": "^4.0.0",
+    "grunt-shell-spawn": "^0.3.10",
+    "protractor": "^4.0.0",
+    "protractor-jasmine2-screenshot-reporter": "^0.3.2"
+  }
 }
