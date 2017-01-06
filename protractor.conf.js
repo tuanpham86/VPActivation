@@ -21,6 +21,7 @@ exports.config = {
     //    running.
     // 3. sauceUser/sauceKey - to use remote Selenium servers via SauceLabs.
 
+	// seleniumAddress: 'http://localhost:4444/wd/hub',	
     // The location of the selenium standalone server .jar file.
     seleniumServerJar: 'node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar',
     // The port to start the selenium server on, or null if the server should
@@ -56,8 +57,21 @@ exports.config = {
     // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
     capabilities: {
         'browserName': 'chrome'
-        //count: 2
     },
+	
+	// directConnect: true,
+	  /**
+	   * Path to the firefox application binary. If null, will attempt to find
+	   * firefox in the default locations.
+	   */
+	
+	// firefoxPath: 'D:\Program Files\Mozilla Firefox',
+	
+	// multiCapabilities: [{
+	//   'browserName': 'firefox'
+	// }, {
+	//   'browserName': 'chrome'
+	// }],
 
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
@@ -100,8 +114,8 @@ exports.config = {
         // If true, include stack traces in failures.
         includeStackTrace: true,
         // Default time to wait in ms before a test fails.
-        defaultTimeoutInterval: 100000,
+        defaultTimeoutInterval: 30000
         // show errors in a real time
-        realtimeFailure: true
+        // realtimeFailure: true
     },
 };

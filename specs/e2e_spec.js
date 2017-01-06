@@ -105,6 +105,10 @@ describe('VZW Prepaid Activation e2e', function () {
         browser.sleep(5000);
         browser.wait(EC.urlContains('#/order-confirm'), wTime);
         
+        browser.manage().getCookie('price').then(function(cookie) {
+            expect(cookie.value).toEqual('$45.00');
+            // console.log(cookie.value);
+        });
         //TODO: edit plan
         // select different plan
     });
