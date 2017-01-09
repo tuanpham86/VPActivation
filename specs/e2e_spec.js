@@ -25,10 +25,10 @@ describe('VZW Prepaid Activation e2e', function () {
         browser.ignoreSynchronization = true;
     });
 
-    // afterEach(function() {
-    //     browser.executeScript('window.sessionStorage.clear();');
-    //     browser.executeScript('window.localStorage.clear();');
-    // });
+    afterEach(function() {
+        // browser.executeScript('window.sessionStorage.clear();');
+        // browser.executeScript('window.localStorage.clear();');
+    });
 
     it('should navigate to home page', function () {
         browser.get('#/scan/003/11/123456298', 10000);
@@ -101,7 +101,8 @@ describe('VZW Prepaid Activation e2e', function () {
 
     it('can select a plan - go to confirm page', function () {
         // click select a plan
-        planPage.clickOnPlan(1);
+        var random = Math.floor(Math.random() * (5)) + 1;
+        planPage.clickOnPlan(random);
         browser.sleep(5000);
         browser.wait(EC.urlContains('#/order-confirm'), wTime);
         
@@ -157,7 +158,9 @@ describe('VZW Prepaid Activation e2e', function () {
         // browser.sleep(5000);
         
         //TODO: input receipt ID: 9881794110024562 (calculated?)
-        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Order and Activation Complete')), wTime));
+        browser.wait(EC.visibilityOf(element(by.cssContainingText('h1','Order and Activation Complete')), wTime)).then(function() {
+            console.log('Finished!');
+        });
         // Portin: only available if select a Port
     });
     

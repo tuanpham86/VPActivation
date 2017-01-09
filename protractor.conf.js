@@ -1,13 +1,15 @@
-var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+// var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
-var reporter = new HtmlScreenshotReporter({
-    dest: 'screenshots',
-    filename: 'my-report.html'
-    //pathBuilder: function (currentSpec, suites, browserCapabilities) {
-        // will return chrome/your-spec-name.png
-    //    return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
-    //}
-});
+// var reporter = new HtmlScreenshotReporter({
+//     dest: 'screenshots',
+//     filename: 'my-report.html'
+//     //pathBuilder: function (currentSpec, suites, browserCapabilities) {
+//         // will return chrome/your-spec-name.png
+//     //    return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
+//     //}
+// });
 
 // A reference configuration file.
 exports.config = {
@@ -82,25 +84,49 @@ exports.config = {
 
     rootElement: 'app',
 
+    useAllAngular2AppRoots: true,
+
     // Setup the report before any tests start
-    beforeLaunch: function () {
-        return new Promise(function (resolve) {
-            reporter.beforeLaunch(resolve);
-        });
-    },
+    // beforeLaunch: function () {
+    //     return new Promise(function (resolve) {
+    //         reporter.beforeLaunch(resolve);
+    //     });
+    // },
 
     // Assign the test reporter to each running instance
     onPrepare: function () {
-        jasmine.getEnv().addReporter(reporter);
-        //require('./waitReady.js');
+        // jasmine.getEnv().addReporter(reporter);
+        jasmine.getEnv().addReporter(
+            new Jasmine2HtmlReporter({
+                savePath: './reports',
+                screenshotsFolder: 'screenshots',
+                takeScreenshots: true
+                // takeScreenshotsOnlyOnFailures: true
+            })
+        );
+        jasmine.getEnv().addReporter(new SpecReporter({
+            spec: {
+                displayStacktrace: false,
+                displayDuration: true
+            },
+            summary: {
+                displayStacktrace: false
+            }
+        }));
+        // require('./waitReady.js');
+        browser.manage().deleteAllCookies();
+        // jasmine-fail-fast
+        // var failFast = require('jasmine-fail-fast');
+        // jasmine.getEnv().addReporter(failFast.init());
+        
     },
 
     // Close the report after all tests finish
-    afterLaunch: function (exitCode) {
-        return new Promise(function (resolve) {
-            reporter.afterLaunch(resolve.bind(this, exitCode));
-        });
-    },
+    // afterLaunch: function (exitCode) {
+    //     return new Promise(function (resolve) {
+    //         reporter.afterLaunch(resolve.bind(this, exitCode));
+    //     });
+    // },
 
 
     // ----- Options to be passed to minijasminenode -----
@@ -114,8 +140,9 @@ exports.config = {
         // If true, include stack traces in failures.
         includeStackTrace: true,
         // Default time to wait in ms before a test fails.
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 40000,
         // show errors in a real time
         // realtimeFailure: true
+        print: function() {}
     },
 };
